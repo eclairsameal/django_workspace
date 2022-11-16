@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ex_app import views    # 應用程式中的函數
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home),    # http://127.0.0.1:8000/
+
 ]
