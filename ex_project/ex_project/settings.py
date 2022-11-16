@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'ex_app',    # 註冊 ex_app 應用
+    'django.contrib.admin',         # 管理者後台
+    'django.contrib.auth',          # 認證授權管理
+    'django.contrib.contenttypes',  # 內容類型管理
+    'django.contrib.sessions',      # session 管理
+    'django.contrib.messages',      # 訊息管理
+    'django.contrib.staticfiles',   # 靜態檔案管理
+    'ex_app',                       # 註冊 ex_app 應用
 ]
 
 MIDDLEWARE = [
