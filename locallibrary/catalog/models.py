@@ -43,6 +43,9 @@ class Book(models.Model):
     """
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
 
+    class Meta:
+        ordering = ['title', 'author']
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title
