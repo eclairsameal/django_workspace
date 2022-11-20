@@ -33,3 +33,10 @@ class Book(models.Model):
         """String for representing the Model object."""
         return self.title
 
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('book-detail', args=[str(self.id)])
+        """
+        get_absolute_url() ，則會回傳一個可以被用來存取該模型細節紀錄的 URL (要讓其有效運作，我們必須定義一個 URL 的映射，
+        我們將其命名為 book-detail ，另外還得定義一個關聯示圖(view)與模板(template) )。
+        """
