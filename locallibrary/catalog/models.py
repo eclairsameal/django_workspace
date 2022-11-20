@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
+import uuid # Required for unique book instances
+
 
 # Create your models here.
 class Genre(models.Model):
@@ -22,7 +24,8 @@ class Book(models.Model):
     """
     summary = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
     isbn = models.CharField('ISBN', max_length=13,
-                            help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
+                            help_text='13 Character <a href="https://www.isbn-international.org/'
+                                      'content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
     """
     使用 ManyToManyField 是因為 genre 可以包含很多書。 書籍可以涵蓋多種類型。
@@ -40,3 +43,37 @@ class Book(models.Model):
         get_absolute_url() ，則會回傳一個可以被用來存取該模型細節紀錄的 URL (要讓其有效運作，我們必須定義一個 URL 的映射，
         我們將其命名為 book-detail ，另外還得定義一個關聯示圖(view)與模板(template) )。
         """
+
+class BookInstance(models.Model):
+    """Model representing a specific copy of a book (i.e. that can be borrowed from the library)."""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                          help_text='Unique ID for this particular book across whole library')
+    """
+    UUIDField 被用來將 id 字段再這個模型中設定為 primary_key ，這類別的字段會分配一個全域唯一的值給每一個實例(instance)，
+    也就是任何一本你能在圖書館找到的書。
+    """
+    book = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
+    imprint = models.CharField(max_length=200)
+    due_back = models.DateField(null=True, blank=True)
+    LOAN_STATUS = (
+        ('m', 'Maintenance'),
+        ('o', 'On loan'),
+        ('a', 'Available'),
+        ('r', 'Reserved'),
+    )
+
+    status = models.CharField(
+        max_length=1,
+        choices=LOAN_STATUS,
+        blank=True,
+        default='m',
+        help_text='Book availability',
+    )
+
+    class Meta:
+        ordering = ['due_back']
+    # 而當元數據模型 (Class Meta)收到請求(query)時也會使用此字段來做資料排序。
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return f'{self.id} ({self.book.title})'
