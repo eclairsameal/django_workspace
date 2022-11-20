@@ -15,6 +15,8 @@ class BookAdmin(admin.ModelAdmin):
 # admin.site.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name')
+    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+    # 默認情況下，字段是垂直顯示的，但是如果您進一步將它們分組到一個元組中，它們將水平顯示
 # Register the admin class with the associated model
 admin.site.register(Author, AuthorAdmin)
 
