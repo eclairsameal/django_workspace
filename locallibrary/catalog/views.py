@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 # Create your views here.
 
+
 def index(request):
     """View function for home page of site."""
 
@@ -14,12 +15,14 @@ def index(request):
 
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
+    num_genre = Genre.objects.count()
 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_genre': num_genre,
     }
     # Render the HTML template index.html with the data in the context variable
     # 調用 render() 函數來創建並返回 HTML 頁面作為響應
