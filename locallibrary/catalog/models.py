@@ -41,6 +41,14 @@ class Book(models.Model):
     使用 ManyToManyField 是因為 genre 可以包含很多書。 書籍可以涵蓋多種類型。
     Genre class has already been defined so we can specify the object above.
     """
+
+    def display_genre(self):
+        """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    display_genre.short_description = 'Genre'
+    # 這會從genre記錄的的頭三個值（如果有的話）創建一個字符串, 和創建一個在管理者網站中出現的short_description標題。
+
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
 
     class Meta:
