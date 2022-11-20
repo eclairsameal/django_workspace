@@ -11,4 +11,10 @@
       <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
       <li><strong>Authors:</strong> {{ num_authors }}</li>
   </ul>
+  <h2>UML Models</h2>
+  <p>An UML diagram of the site's Django model structure is shown below. </p>
+  <div>
+  {% load static %}
+  <img src="{% static 'images/local_library_model_uml.png' %}" alt="UML diagram" style="width:555px;height:540px;">
+  </div>
 {% endblock %}
