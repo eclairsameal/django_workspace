@@ -26,6 +26,15 @@ admin.site.register(Author, AuthorAdmin)
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')    # 加入列表過濾器 (List Filter)
+    # 改變布局
+    fieldsets = (
+        (None, {   # 不要標題時用 None
+            'fields': ('book', 'imprint', 'id')
+        }),
+        ('Availability', {
+            'fields': ('status', 'due_back')
+        }),
+    )
 
 admin.site.register(Language)
 admin.site.register(Genre)
