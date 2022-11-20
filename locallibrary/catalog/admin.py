@@ -36,6 +36,8 @@ admin.site.register(Author, AuthorAdmin)
 # Register the Admin classes for BookInstance using the decorator
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('book', 'status', 'due_back', 'id')
+    # 對於BookInstance列表視圖(list view)，添加代號以顯示books，status，due back date和id（而不是默認的__str__()文本）
     list_filter = ('status', 'due_back')  # 加入列表過濾器 (List Filter)
     # 改變布局
     fieldsets = (
