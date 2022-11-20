@@ -21,6 +21,7 @@ class Language(models.Model):
         """String for representing the Model object (in Admin site etc.)"""
         return self.name
 
+
 class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
     title = models.CharField(max_length=200)
@@ -40,6 +41,7 @@ class Book(models.Model):
     使用 ManyToManyField 是因為 genre 可以包含很多書。 書籍可以涵蓋多種類型。
     Genre class has already been defined so we can specify the object above.
     """
+    language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         """String for representing the Model object."""
