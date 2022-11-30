@@ -21,5 +21,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.home),
     path('eggs', views.eggs),
-    path('password/', views.password), # 結尾的斜線是一種偏好，有結束的感覺
+    # path('password/', views.password), # 結尾的斜線是一種偏好，有結束的感覺
+    path('generatedpassword/', views.password, name='password')
 ]
