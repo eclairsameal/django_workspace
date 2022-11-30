@@ -5,8 +5,11 @@ from django.http import HttpResponse
 
 def home(request):
     # return HttpResponse("Hello there friend!")
-    # return render(request, 'generator/home.html')
-    return render(request, 'generator/home.html', {'password':'asdf456'})
+    return render(request, 'generator/home.html')
+    # return render(request, 'generator/home.html', {'password':'asdf456'})
 
 def eggs(request):
     return HttpResponse("<h1>Eggs are so tasty</h1>")
+
+def password(request):
+    return render(request, 'generator/password.html')
