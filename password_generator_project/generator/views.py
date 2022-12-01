@@ -14,7 +14,14 @@ def eggs(request):
 
 def password(request):
     char_list = list('abcdefghijklmnopqrstuvwxyz')
-    length = 10
+    if request.GET.get("uppercase"):
+        char_list.extend('abcdefghijklmnopqrstuvwxyz'.upper())
+    if request.GET.get("special"):
+        char_list.extend(list('!@#$%^&*()'))
+    if request.GET.get("numbers"):
+        char_list.extend(map(str, list(range(10))))
+    # length = 10
+    length = int(request.GET.get('length', 12))    # 從home.html 中取 length
     thepassword = ""
     
     for char in range(length):
