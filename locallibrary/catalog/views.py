@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
+
+
 # Create your views here.
 
 
@@ -28,3 +30,12 @@ def index(request):
     # 調用 render() 函數來創建並返回 HTML 頁面作為響應
     # context 變量包含將插入到這些佔位符中的數據的 Python 字典）為參數
     return render(request, 'index.html', context=context)
+
+
+from django.views import generic
+"""
+利用generic裡的列表視圖（ListView）
+"""
+class BookListView(generic.ListView):
+    """Generic class-based view for a list of books."""
+    model = Book  # 通用 view 將查詢數據庫，以獲取指定模型（Book）的所有記錄
