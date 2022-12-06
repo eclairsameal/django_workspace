@@ -10,4 +10,4 @@ def all_blogs(request):
 def detail(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id) # pk 是主鍵的縮寫
     # return render(request, "blog/detail.html", {"id": blog_id})
-    return render(request, "blog/detail.html", {"blog": blog})
+    return render(request, "blog/detail.html", {"blog":blog})
