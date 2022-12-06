@@ -4,7 +4,10 @@
 <div class="container text-center">
 <h1> Portfolio </h1>
 <!-- {{projects}} -->
+    <a href="{% url 'blog:all_blogs' %}">Blog</a> <!--將所有博客的頁面連接到主頁-->
+    <br>
     <a href="{%  static 'portfolio/F9749.pdf' %}">Resume</a>     <!-- 載入靜態pdf檔案-->
+    <br>
     <img src="{% static 'portfolio/homeimg.jpg' %}">    <!-- 載入靜態圖片檔案-->
 {% for project in projects %}
     <h2>{{project.title}}</h2>
