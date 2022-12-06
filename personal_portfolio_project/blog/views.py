@@ -4,7 +4,9 @@ from .models import Blog
 # Create your views here.
 def all_blogs(request):
     # blogs = Blog.objects.all()
-    blogs = Blog.objects.order_by('-date')[:5]   # 照日期編排取前5個
+    # blog_count = Blog.objects.count 寫這行就必須要傳這個變數 xx
+    # blogs = Blog.objects.order_by('-date')[:5]   # 照日期編排取前5個
+    blogs = Blog.objects.order_by('-date')
     return render(request, "blog/all_blogs.html", {"blogs":blogs})
 
 def detail(request, blog_id):

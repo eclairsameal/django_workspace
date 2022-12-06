@@ -1,4 +1,5 @@
 hello blog
+<h2> written {{blogs.count}} blog{{blogs.count|pluralize}} </h2>  <!--計算 blog 有多少-->
 {% for blog in blogs %}
 <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
 <h5>{{ blog.date }}</h5>
