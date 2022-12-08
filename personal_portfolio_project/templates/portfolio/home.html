@@ -1,21 +1,37 @@
 {% extends 'portfolio/base.html' %}
 {% block content %}
     {% load static %}   <!-- 載入靜態檔案-->
-    <h1> Portfolio </h1>
+
     <!-- {{projects}} -->
     <div class="row justify-content-center my-3">
         <div class="col-5">
-            <img src="{% static 'portfolio/homeimg.jpg' %}">    <!-- 載入靜態圖片檔案-->
+            <img src="{% static 'portfolio/homeimg.jpg' %}" class="img-fluid">    <!-- 載入靜態圖片檔案-->
         </div>
     </div>
-    {% for project in projects %}
-        <h2>{{project.title}}</h2>
-        <p>{{project.description}}</p>
-        <img src={{ project.image.url}}>   <!-- url = 完整路徑 -->
-        {% if project.url %}
-            <a href={{ project.url}}>Link</a>
-        {% endif %}
-    {% endfor %}
+    <div class="row justify-content-center mb-3">
+          <div class="col-md-9 text-center">
+                <h1 id="hometext" class="font-weight-bold">Nick Walter is Commander-in-Chief at ZappyCode and lives in Downtown Tokyo 😊</h1>
+          </div>
+    </div>
+    <h2 class="mt-5">Portfolio</h2>
+    <hr>
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-lg-4 col-md-6">
+                {% if project.url %}
+                    <a href="{{ project.url }}">
+                        <img src="{{ project.image.url }}" class="img-fluid mb-2">
+                    </a>
+                {% else %}
+                    <img src="{{ project.image.url }}" class="img-fluid mb-2">
+                {% endif %}
+                <h2>{{project.title}}</h2>
+                <p>{{project.description}}</p>
+            </div>
+        {% endfor %}
+        
+        
+        
 {% endblock %}
 
 <!--
