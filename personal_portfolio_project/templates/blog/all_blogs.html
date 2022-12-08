@@ -1,10 +1,32 @@
 {% extends 'portfolio/base.html' %}
 {% block content %}
-    hello blog
-    <h2> written {{blogs.count}} blog{{blogs.count|pluralize}} </h2>  <!--計算 blog 有多少-->
+    <!--<h2> written {{blogs.count}} blog{{blogs.count|pluralize}} </h2>  計算 blog 有多少-->
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">written {{blogs.count}} blog{{blogs.count|pluralize}}</h1>
+      <p class="fs-5 text-muted"></p>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for blog in blogs %}
+    <!--
         <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
         <h5>{{ blog.date|date:"M d Y"|upper}}</h5>
         <p>{{blog.description|striptags|truncatechars:100}}</p>
+    -->
+    <div class="col">
+      <div class="card border-secondary mb-4 h-100 ">
+        <div class="card-header">{{ blog.date|date:"M d Y"|upper}}</div>
+      
+        <div class="card-body">
+          <h5 class="card-title">{{ blog.title }}</h5>
+          <p class="card-text">{{blog.description|striptags|truncatechars:100}}</p>
+        </div>
+        
+        <div class="card-footer text-end">
+          <a href="{% url 'blog:detail' blog.id %}" class="btn btn-primary">Button</a>
+        </div>
+      </div>
+  </div>
     {% endfor %}
+</div>
+
 {% endblock %}
