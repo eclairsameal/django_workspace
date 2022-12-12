@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.contrib.auth import login
+
 # Create your views here.
 def sigunpuser(request):
     if request.method == 'GET':    # 檢查是否為GET方法
