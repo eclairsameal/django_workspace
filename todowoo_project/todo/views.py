@@ -25,5 +25,9 @@ def sigunpuser(request):
             return render(request, 'todo/sigunpuser.html', {'form':UserCreationForm(),
                           'error':'Passwords did not match'})
 
+def logoutuser(request):
+    if request.method == 'POST':
+        
+
 def currenttodos(request):
     return render(request, 'todo/currenttodos.html')
