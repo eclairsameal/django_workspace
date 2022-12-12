@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -15,6 +15,7 @@ def sigunpuser(request):
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()    # 上面只是設定值，設定完後要用save存到資料庫裡
                 login(request, user)    # 登入
+                return redirect('currenttodos')    # 導向currenttodos(記得要return)
             except IntegrityError:    # 用戶名重複
                 return render(request, 'todo/sigunpuser.html', {'form':UserCreationForm(),
                           'error':'That username has already been taken. Please choose a new username.'})
