@@ -14,7 +14,8 @@ def sigunpuser(request):
             try:
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()    # 上面只是設定值，設定完後要用save存到資料庫裡
-            except IntegrityError:
+                login(request, user)    # 登入
+            except IntegrityError:    # 用戶名重複
                 return render(request, 'todo/sigunpuser.html', {'form':UserCreationForm(),
                           'error':'That username has already been taken. Please choose a new username.'})
                 
@@ -22,4 +23,6 @@ def sigunpuser(request):
             # Tell the user the passwords didn't match
             return render(request, 'todo/sigunpuser.html', {'form':UserCreationForm(),
                           'error':'Passwords did not match'})
-            
+
+def currenttodos(request):
+    return render(request, 'todo/currenttodos.html')
