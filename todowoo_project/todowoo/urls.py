@@ -22,7 +22,7 @@ urlpatterns = [
     
     # Auth
     path('sigunp/', views.sigunpuser, name='sigunpuser'),
-    
+    path('logout/', views.logoutuser, name='logoutuser'),
     # Todos
     path('current/', views.currenttodos, name='currenttodos'),
 ]
