@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 # Create your views here.
+def home(request):
+    return render(request, 'todo/home.html')
+
 def sigunpuser(request):
     if request.method == 'GET':    # 檢查是否為GET方法
         return render(request, 'todo/sigunpuser.html', {'form':UserCreationForm()})
@@ -27,6 +30,8 @@ def sigunpuser(request):
 
 def logoutuser(request):
     if request.method == 'POST':
+        logout(request)
+        return redirect('home')
         
 
 def currenttodos(request):
